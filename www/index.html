@@ -1,31 +1,26 @@
 <!DOCTYPE html>
-<!--
-    Licensed to the Apache Software Foundation (ASF) under one
-    or more contributor license agreements.  See the NOTICE file
-    distributed with this work for additional information
-    regarding copyright ownership.  The ASF licenses this file
-    to you under the Apache License, Version 2.0 (the
-    "License"); you may not use this file except in compliance
-    with the License.  You may obtain a copy of the License at
-
-    http://www.apache.org/licenses/LICENSE-2.0
-
-    Unless required by applicable law or agreed to in writing,
-    software distributed under the License is distributed on an
-    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-     KIND, either express or implied.  See the License for the
-    specific language governing permissions and limitations
-    under the License.
--->
 <html>
     <head>
+        <meta name="generator" content="HTML Tidy for HTML5 (experimental) for Windows https://github.com/w3c/tidy-html5/tree/c63cc39" />
         <meta charset="utf-8" />
         <meta name="format-detection" content="telephone=no" />
         <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+        <link rel="stylesheet" type="text/css" href="css/common.css" />
         <link rel="stylesheet" type="text/css" href="css/index.css" />
-        <title>Hello World</title>
+        <script src="js/main.js"></script>
+        <script type="text/javascript" src="phonegap.js"></script>
+        <!--essential for build? -->
+        <script src="lib/webtoolkit.base64.js"></script>
+        <title>TAS App</title>
     </head>
     <body>
+        <header>
+            <a href="#">
+            <img id="imgLogo" src="img/logoAvailable.png" /> 
+            <img id="imgTitle" src="img/title.png" /> 
+            <img id="imgMore" src="img/more.png" /></a>
+            <h1 id="page_caption">Caption</h1>
+        </header>
         <div class="app">
             <h1>PhoneGap</h1>
             <div id="deviceready" class="blink">
@@ -33,10 +28,207 @@
                 <p class="event received">Device is Ready</p>
             </div>
         </div>
-        <script type="text/javascript" src="phonegap.js"></script>
-        <script type="text/javascript" src="js/index.js"></script>
-        <script type="text/javascript">
-            app.initialize();
-        </script>
+        <div id="divCurrentStatus">
+            <h2>I am: 
+            <span id="myCurrentStatus">Offline</span></h2>
+        </div>
+        <!--
+//=================================================================================
+//  ##     ##   ####   #####   ######                                              
+//  ##     ##  #    #  #    #  #                                                   
+//  # #   # # #      # #    #  #                                                   
+//  # #   # # #      # #    #  #                                                   
+//  #  # #  # #      # #####   ######                                              
+//  #  # #  # #      # #  #    #                                                   
+//  #   #   # #      # #   #   #                                                   
+//  #   #   #  #    #  #    #  #                                                   
+//  #       #   ####   #     # ######                                              
+//=================================================================================
+-->
+        <div id="menuMore" class="menuHidden">
+            <h2>Log-off</h2>
+            <h2>Set my status</h2>
+        </div>
+        <!--
+//=================================================================================
+//   #####  ###### ####### ####### ### ##    #   ####   #####
+//  #     # #         #       #     #  ##    #  #    # #     #
+//  #       #         #       #     #  # #   # #       #
+//  #       #         #       #     #  # #   # #       #
+//   #####  ######    #       #     #  #  #  # #        #####
+//        # #         #       #     #  #   # # #   ###       #
+//        # #         #       #     #  #   # # #     #       #
+//  #     # #         #       #     #  #    ##  #    # #     #
+//   #####  ######    #       #    ### #    ##   #####  #####
+//=================================================================================
+-->
+        <div id="settingsPage" data-app-page="Settings">
+            <div id="divSettingsLogin" class="divSettings">
+                <fieldset>
+                    <legend>Login details:</legend>
+                    <ol>
+                        <li>
+                        <label for="login_username">Username:</label> 
+                        <input id="login_username" name="login_username" type="text" /></li>
+                    </ol>
+                    <button id="butLogout">Logout</button>
+                </fieldset>
+            </div>
+            <div id="divSettingsDetails" class="divSettings">
+                <fieldset>
+                    <legend>Name:</legend>
+                    <ol>
+                        <li>
+                        <label for="name_title">Title:</label> 
+                        <input id="name_title" name="name_title" type="text" placeholder="e.g. Miss" /></li>
+                        <li>
+                        <label for="name_firstname">First name:</label> 
+                        <input id="name_firstname" name="name_firstname" type="text" placeholder="e.g. Ruby" required="" /></li>
+                        <li>
+                        <label for="name_lastname">Last name:</label> 
+                        <input id="name_lastname" name="name_lastname" type="text" placeholder="e.g. Jones" required="" /></li>
+                    </ol>
+                </fieldset>
+                <fieldset>
+                    <legend>Address:</legend>
+                    <ol>
+                        <li>
+                        <label for="address_1">Address 1:</label> 
+                        <input id="address_1" name="address_1" type="text" /></li>
+                        <li>
+                        <label for="address_2">Address 2:</label> 
+                        <input id="address_2" name="address_2" type="text" /></li>
+                        <li>
+                        <label for="address_3">City:</label> 
+                        <input id="address_3" name="address_3" type="text" /></li>
+                        <li>
+                        <label for="address_4">State:</label> 
+                        <input id="address_4" name="address_4" type="text" /></li>
+                        <li>
+                        <label for="address_postcode">Zip:</label> 
+                        <input id="address_postcode" name="address_postcode" type="text" /></li>
+                        <li>
+                        <label for="address_country">Country:</label> 
+                        <input id="address_country" name="address_country" type="text" /></li>
+                    </ol>
+                </fieldset>
+                <fieldset>
+                    <legend>Contact:</legend>
+                    <ol>
+                        <li>
+                        <label for="contact_email">Email:</label> 
+                        <input id="contact_email" name="contact_email" type="email" /></li>
+                        <li>
+                        <label for="contact_telday">Tel (Day):</label> 
+                        <input id="contact_telday" name="contact_telday" type="tel" /></li>
+                        <li>
+                        <label for="contact_telext">Tel (Ext):</label> 
+                        <input id="contact_telext" name="contact_telext" type="text" /></li>
+                        <li>
+                        <label for="contact_televe">Tel (Eve):</label> 
+                        <input id="contact_televe" name="contact_televe" type="tel" /></li>
+                        <li>
+                        <label for="contact_mobile">Mobile/Cell:</label> 
+                        <input id="contact_mobile" name="contact_mobile" type="tel" /></li>
+                        <li>
+                        <label for="contact_telvm">Voice mail:</label> 
+                        <input id="contact_telvm" name="contact_telvm" type="tel" /></li>
+                        <li>
+                        <label for="contact_fax">Fax:</label> 
+                        <input id="contact_fax" name="contact_fax" type="tel" /></li>
+                    </ol>
+                </fieldset>
+                <fieldset>
+                    <legend>Company detail</legend>
+                    <ol>
+                        <li>
+                        <label for="company_name">Company Name:</label> 
+                        <input id="company_name" name="company_name" type="text" disabled="disabled" /></li>
+                        <li>
+                        <label for="company_website">Website:</label> 
+                        <input id="company_website" name="company_website" type="text" disabled="disabled" /></li>
+                        <li>
+                        <label for="company_jobtitle">Job Title:</label> 
+                        <input id="company_jobtitle" name="company_jobtitle" type="text" /></li>
+                    </ol>
+                </fieldset>
+                <fieldset>
+                    <button id="butUpdateMe">Update</button>
+                </fieldset>
+            </div>
+        </div>
+        <!--Settings-->
+        <!--
+//=================================================================================
+//  ##     ## ######  #####   #####     #      ####  ######  #####
+//  ##     ## #      #     # #     #    #     #    # #      #     #
+//  # #   # # #      #       #         # #   #       #      #
+//  # #   # # #      #       #         # #   #       #      #
+//  #  # #  # ######  #####   #####   #   #  #       ######  #####
+//  #  # #  # #            #       #  #   #  #   ### #            #
+//  #   #   # #            #       #  #####  #     # #            #
+//  #   #   # #      #     # #     # #     #  #    # #      #     #
+//  #       # ######  #####   #####  #     #   ##### ######  #####
+//=================================================================================
+-->
+        <div id="mainPage" data-app-page="Messages">
+            <div id="messageList"></div>
+        </div>
+        <!--Messages-->
+        <!--
+//=================================================================================
+//   #####  #######    #    ####### #     #  #####                                 
+//  #     #    #       #       #    #     # #     #                                
+//  #          #      # #      #    #     # #                                      
+//  #          #      # #      #    #     # #                                      
+//   #####     #     #   #     #    #     #  #####                                 
+//        #    #     #   #     #    #     #       #                                
+//        #    #     #####     #    #     #       #                                
+//  #     #    #    #     #    #     #   #  #     #                                
+//   #####     #    #     #    #      ###    #####                                 
+//=================================================================================
+-->
+        <div id="pageStatus" data-app-page="Set Status">
+            <form>
+                <fieldset>
+                    <legend>I am:</legend>
+                    <div id="listStatuses"></div>
+                </fieldset>
+                <fieldset>
+                    <textarea id="shortNotes"></textarea>
+                </fieldset>
+                <fieldset>
+                    <button id="butSubmitStatus">Update</button>
+                </fieldset>
+            </form>
+        </div>
+        <!--Status-->
+        <!--
+//=================================================================================
+//  #       ####     ####  ### ##    #
+//  #      #    #   #    #  #  ##    #
+//  #     #      # #        #  # #   #
+//  #     #      # #        #  # #   #
+//  #     #      # #        #  #  #  #
+//  #     #      # #   ###  #  #   # #
+//  #     #      # #     #  #  #   # #
+//  #      #    #   #    #  #  #    ##
+//  #####   ####     ##### ### #    ##
+//=================================================================================
+-->
+        <div id="loginPage" data-app-page="Login">
+            <dl>
+                <dt>Username:</dt>
+                <dd>
+                    <input id="username" name="username" type="text" placeholder="as given to you" required="" autofocus="" />
+                </dd>
+                <dt>Password:</dt>
+                <dd>
+                    <input id="password" name="password" type="password" placeholder="as given to you" />
+                </dd>
+            </dl>
+            <button id="submitLoginButton">Login</button>
+        </div>
+        <!--Login-->
     </body>
 </html>
